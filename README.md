@@ -32,5 +32,5 @@ timestamps representing the time interval within which we want to retrieve de in
 ```
 Alternatively you can also add an optional query parameter : "type" and "os" in order to group the results.
 ```bash
-/event/:from/:to?groupBy=type,os
+/event/1637884800/1637971199?groupBy=type,os
 ```
