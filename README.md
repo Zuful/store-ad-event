@@ -22,7 +22,7 @@ The body of the POST request must look like this:
 ```json
 {
   "type":"visible",
-  "timestamp":1637790192
+  "timestamp":1637885000
 }
 ```
 Launch a GET request on the following endpoint in order a list of event. There are 2 required parameters that are 
