@@ -28,7 +28,7 @@ The body of the POST request must look like this:
 Launch a GET request on the following endpoint in order a list of event. There are 2 required parameters that are 
 timestamps representing the time interval within which we want to retrieve de informations.
 ```bash
-/event/:from/:to
+/event/1637884800/1637971199
 ```
 Alternatively you can also add an optional query parameter : "type" and "os" in order to group the results.
 ```bash
