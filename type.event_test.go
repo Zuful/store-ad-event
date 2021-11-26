@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -37,7 +36,7 @@ func TestGetAllGroupsEventList(t *testing.T) {
 		{Type: "click", OsName: "android"},
 	}
 	var allGroups []string = []string{"*", "type", "os"}
-	fmt.Println(getAllGroupsEventList(eventList, allGroups))
+
 	for oneGroupName, oneGroupEventList := range getAllGroupsEventList(eventList, allGroups) {
 		if oneGroupName == "*" && len(oneGroupEventList["all"]) != len(eventList) {
 			t.Error("Size mismatch for the all group.")
@@ -75,20 +74,6 @@ func TestGetAllGroupsEventList(t *testing.T) {
 					t.Error("Size mismatch for the android group.")
 				}
 			}
-		}
-	}
-}
-
-func TestGroupEventList(t *testing.T) {
-	var eventList []Event
-	var groupBy string
-	var groupedEventList map[string][]Event = make(map[string][]Event)
-
-	for _, oneEvent := range eventList {
-		if groupBy == "type" {
-			groupedEventList[oneEvent.Type] = append(groupedEventList[oneEvent.Type], oneEvent)
-		} else if groupBy == "os" {
-			groupedEventList[oneEvent.OsName] = append(groupedEventList[oneEvent.OsName], oneEvent)
 		}
 	}
 }

@@ -14,12 +14,12 @@ type Event struct {
 }
 
 func createEvent(event Event) error {
-	database, err := sql.Open("postgres", psqlInfo)
+	database, err := sql.Open(driverName, dbFilePath)
 	CheckErr(err)
 	defer database.Close()
 
 	statement, err := database.Prepare(`INSERT INTO ad_event(	type , user_agent, ip, timestamp , os_name)
-											  VALUES ($1, $2, $3, $4, $5)`)
+											  VALUES (?, ?, ?, ?, ?)`)
 	_, err = statement.Exec(event.Type, event.UserAgent, event.Ip, event.Timestamp, event.OsName)
 	CheckErr(err)
 
@@ -27,13 +27,13 @@ func createEvent(event Event) error {
 }
 
 func getEventList(from, to int64) (error, []Event) {
-	database, err := sql.Open(driverName, psqlInfo)
+	database, err := sql.Open("sqlite3", dbFilePath)
 	CheckErr(err)
 	defer database.Close()
 
 	var eventList []Event = make([]Event, 0)
 	var sqlQuery string = `SELECT id, type, user_agent, ip, timestamp, os_name
-						   FROM ad_event WHERE timestamp BETWEEN $1 AND $2 ORDER BY timestamp ASC LIMIT 200`
+						   FROM ad_event WHERE timestamp BETWEEN ? AND ? ORDER BY timestamp ASC LIMIT 200`
 
 	result, err := database.Query(sqlQuery, from, to)
 
