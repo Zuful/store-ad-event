@@ -20,6 +20,7 @@ func main() {
 
 	r.POST("/event", handlerCreateEvent)
 	r.GET("/event/:from/:to", handlerGetEvent)
+	r.GET("/event/:new", handlerGetEvent)
 
 	err := r.Run()
 	CheckErr(err)
